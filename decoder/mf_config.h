@@ -4,16 +4,15 @@
 #define _MF_CONFIG_H_
 
 #ifdef __AVR__
-  #include <avr/pgmspace.h>
+#include <avr/pgmspace.h>
 #elif defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
- #include <pgmspace.h>
+#include <pgmspace.h>
 #else
- #include <stdint.h>
- #define PROGMEM
- #define pgm_read_byte(addr) (*(const unsigned char *)(addr))
- #define pgm_read_word(addr) (*(const uint16_t *)(addr))
+#include <stdint.h>
+#define PROGMEM
+#define pgm_read_byte(addr) (*(const unsigned char*)(addr))
+#define pgm_read_word(addr) (*(const uint16_t*)(addr))
 #endif /* __AVR__ */
-
 
 /*******************************************************
  * Configuration settings related to build environment *
@@ -24,7 +23,6 @@
 #define MF_FONT_FILE_NAME "fonts.h"
 #endif
 
-
 /*****************************************
  * Configuration settings related to API *
  *****************************************/
@@ -32,20 +30,19 @@
 /* Encoding for the input data.
  * With the unicode encodings, the library supports the range of unicode
  * characters 0x0000-0xFFFF (the Basic Multilingual Plane).
- * 
+ *
  * ASCII: Plain ascii (somewhat works with ISO8859-1 also)
  * UTF8:  UTF8 encoding (variable number of bytes)
  * UTF16: UTF16 encoding (2 bytes per character, compatible with UCS-2)
  * WCHAR: Use compiler's wchar_t (usually same as UTF16)
  */
 #define MF_ENCODING_ASCII 0
-#define MF_ENCODING_UTF8  1
+#define MF_ENCODING_UTF8 1
 #define MF_ENCODING_UTF16 2
 #define MF_ENCODING_WCHAR 3
 #ifndef MF_ENCODING
 #define MF_ENCODING MF_ENCODING_UTF8
 #endif
-
 
 /************************************************************************
  * Configuration settings related to visual appearance of rendered text *
@@ -80,7 +77,6 @@
 #ifndef MF_TABSIZE
 #define MF_TABSIZE 8
 #endif
-
 
 /*************************************************************************
  * Configuration settings to strip down library to reduce resource usage *
@@ -131,8 +127,6 @@
 #define MF_KERNING_ZONES 16
 #endif
 
-
-
 /* Add extern "C" when used from C++. */
 #ifdef __cplusplus
 #define MF_EXTERN extern "C"
@@ -141,4 +135,3 @@
 #endif
 
 #endif
-

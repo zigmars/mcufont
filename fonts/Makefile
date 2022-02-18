@@ -3,7 +3,7 @@ MCUFONT = ../encoder/mcufont
 
 # Names of fonts to process
 FONTS = DejaVuSans12 DejaVuSans12bw DejaVuSerif16 DejaVuSerif32 \
-	fixed_5x8 fixed_7x14 fixed_10x20 DejaVuSans12bw_bwfont
+	fixed_5x8 fixed_7x14 fixed_10x20 DejaVuSans12bw_bwfont SourceCodePro_Regular20
 
 # Characters to include in the fonts
 CHARS = 0-255 0x2010-0x2015
@@ -14,7 +14,7 @@ clean:
 	rm -f $(FONTS:=.c) $(FONTS:=.dat)
 
 fonts.h: $(FONTS:=.c)
-	/bin/echo -e $(foreach font,$(FONTS),'\n#include "'$(font)'.c"') > $@
+	echo $(foreach font,$(FONTS),'\n#include "'$(font)'.c"') > $@
 
 %.c: %.dat $(MCUFONT)
 	$(MCUFONT) rlefont_export $<
@@ -27,7 +27,12 @@ DejaVuSans12bw_bwfont.c: DejaVuSans12bw_bwfont.dat $(MCUFONT)
 
 DejaVuSans12bw_bwfont.dat: DejaVuSans12bw.dat
 	cp $< $@
-	
+
+SourceCodePro_Regular20.dat: SourceCodePro_Regular.ttf
+	$(MCUFONT) import_ttf $< 20
+	$(MCUFONT) filter $@ 32-126
+	$(MCUFONT) rlefont_optimize $@ 300
+
 DejaVuSans12.dat: DejaVuSans.ttf
 	$(MCUFONT) import_ttf $< 12
 	$(MCUFONT) filter $@ $(CHARS)

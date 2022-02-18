@@ -8,12 +8,7 @@
 #include "mf_rlefont.h"
 #include <stdbool.h>
 
-enum mf_align_t
-{
-    MF_ALIGN_LEFT = 0,
-    MF_ALIGN_CENTER,
-    MF_ALIGN_RIGHT
-};
+enum mf_align_t { MF_ALIGN_LEFT = 0, MF_ALIGN_CENTER, MF_ALIGN_RIGHT };
 
 /* Callback for rendering a single character.
  * x0:          Left edge of the target position of character.
@@ -22,8 +17,8 @@ enum mf_align_t
  * state:       Free state variable for use by the callback.
  * Returns the width of the character.
  */
-typedef uint8_t (*mf_character_callback_t) (int16_t x0, int16_t y0,
-                                            mf_char character, void *state);
+typedef uint8_t (*mf_character_callback_t)(int16_t x0, int16_t y0,
+                                           mf_char character, void* state);
 
 /* Get width of a string in pixels.
  *
@@ -32,8 +27,8 @@ typedef uint8_t (*mf_character_callback_t) (int16_t x0, int16_t y0,
  * count:  Number of characters on the line or 0 to read until end of string.
  * kern:   True to consider kerning (slower).
  */
-MF_EXTERN int16_t mf_get_string_width(const struct mf_font_s *font,
-                                      mf_str text, uint16_t count, bool kern);
+MF_EXTERN int16_t mf_get_string_width(const struct mf_font_s* font, mf_str text,
+                                      uint16_t count, bool kern);
 
 /* Render a single line of aligned text.
  *
@@ -46,12 +41,10 @@ MF_EXTERN int16_t mf_get_string_width(const struct mf_font_s *font,
  * callback: Callback to call for each character.
  * state:    Free variable for use in the callback.
  */
-MF_EXTERN void mf_render_aligned(const struct mf_font_s *font,
-                                 int16_t x0, int16_t y0,
-                                 enum mf_align_t align,
-                                 mf_str text, uint16_t count,
-                                 mf_character_callback_t callback,
-                                 void *state);
+MF_EXTERN void mf_render_aligned(const struct mf_font_s* font, int16_t x0,
+                                 int16_t y0, enum mf_align_t align, mf_str text,
+                                 uint16_t count,
+                                 mf_character_callback_t callback, void* state);
 
 /* Render a single line of justified text.
  *
@@ -64,11 +57,10 @@ MF_EXTERN void mf_render_aligned(const struct mf_font_s *font,
  * callback: Callback to call for each character.
  * state:    Free variable for use in the callback.
  */
-MF_EXTERN void mf_render_justified(const struct mf_font_s *font,
-                                   int16_t x0, int16_t y0, int16_t width,
-                                   mf_str text, uint16_t count,
+MF_EXTERN void mf_render_justified(const struct mf_font_s* font, int16_t x0,
+                                   int16_t y0, int16_t width, mf_str text,
+                                   uint16_t count,
                                    mf_character_callback_t callback,
-                                   void *state);
-
+                                   void* state);
 
 #endif
