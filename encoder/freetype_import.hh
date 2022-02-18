@@ -5,6 +5,6 @@
 
 namespace mcufont {
 
-std::unique_ptr<DataFile> LoadFreetype(std::istream &file, int size, bool bw);
+std::unique_ptr<DataFile> LoadFreetype(std::istream& file, int size, bool bw);
 
 }
