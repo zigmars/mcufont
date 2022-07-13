@@ -112,3 +112,10 @@ Debugging and testing
 The encoder includes basic unit tests which are run before building. The
 decoder side is tested using the *render_bmp* example applications. All tests
 are run automatically by executing *make* in the top directory.
+
+How to only build the SourceCodePro_Regular20 font
+==================================================
+```sh
+make -C encoder mcufont
+make -C fonts fonts.h FONTS=SourceCodePro_Regular20
+```

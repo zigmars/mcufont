@@ -379,7 +379,7 @@ void optimize(DataFile& datafile, size_t iterations) {
     size_t size = get_encoded_size(datafile);
 
     for (size_t i = 0; i < iterations; i++) {
-        optimize_parallel(datafile, size, rnd, verbose);
+        optimize_parallel(datafile, size, rnd, verbose, 8);
     }
 
     std::uniform_int_distribution<size_t> dist(
